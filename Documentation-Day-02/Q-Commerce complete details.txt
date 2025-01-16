@@ -1,0 +1,175 @@
+"MARKETPLACE TECHNICAL FOUNDATION Q-COMMERCE HISTORY"
+1) SYSTEM ARCHITECTURE OVERVIEW:
+Now we discussed the role of each component that we draw on excalidraw. Firstly;
+
+1)Frontend UI as we all know that UI is the most essential part of our project that attracts users to use our website "Better the UI More the users". It is the most hybrid part on our coding journey to make UI perfect.
+
+2)Sanity CMS is a headless content management system designed for developers and content creators to build and manage digital content efficiently.  Its API-first approach ensures that content can be easily integrated into websites, applications, and other digital experiences, making it a popular choice for modern web development. With real-time collaboration features, a powerful query language (GROQ), and an intuitive user interface, Sanity enables teams to create, edit, and deliver content across various platforms seamlessly.
+
+3)A third-party API (Application Programming Interface) is a set of protocols and tools that allows developers to access and integrate external services or data from other companies or platforms into their own applications. These APIs enable developers to leverage existing functionalities, such as payment processing, social media interactions, or data storage, without having to build those features from scratch. By using third-party APIs, developers can enhance their applications, streamline development processes, and provide users with richer experiences while saving time and resources.
+
+2)KEYWORKS FLOW":
+Now we have to discussed about keywork flow, it s already done in diagram form
+
+3)"CATEGORY SPECIFIC INSTRUCTIONS"
+Q-COMMERCE:
+Q-commerce, or quick commerce, refers to a fast-paced e-commerce model focused on delivering products within a very short timeframe, often under an hour. Examples of q-commerce companies include GoPuff, DoorDash, Instacart, Rappi, and Jumia, which specialize in rapid delivery of essential items such as groceries, snacks, and household supplies.
+
+"Key Characteristics of Q-Commerce"
+
+i)Speed of Delivery: Q-commerce emphasizes ultra-fast delivery, typically within 10 to 60 minutes of placing an order.
+Localized Operations: It relies on micro-fulfillment centers or "dark stores" located close to urban areas to ensure quick access to high-demand products.
+ii)Small Order Sizes: Customers often place smaller, more frequent orders, catering to immediate needs rather than bulk purchases.
+iii)Technology Integration: Advanced technologies, including AI and real-time inventory management, are utilized to optimize logistics and enhance customer experience.
+
+"Example of Q-Commerce":
+
+FoodPanda: This platform exemplifies q-commerce by delivering food, groceries, and everyday essentials rapidly. With a network of drivers and strategically located warehouses, DoorDash can fulfill orders quickly, often within minutes, making it a go-to service for urgent needs.
+Q-commerce is reshaping the retail landscape by prioritizing speed and convenience, meeting the growing consumer demand for immediate access to essential goods.
+
+4)"API ENDPOINTS":
+i)ENDPOINT:/express-delivery
+ii)METHOD:GET
+iii)PURPOSE:Deliver on urgent basis or in quick time
+iv)RESPONSE EXAMPLE:{"id:1, "name":"Panadol tab", "price":50}
+
+5)"SANITY SCHEMA EXAMPLE":
+it can be defined as follows:
+1)PRODUCT SCHEMA:
+
+export default {
+  name: 'product',
+  title: 'Product',
+  type: 'document',
+  fields: [
+    {
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+    },
+    {
+      name: 'description',
+      title: 'Description',
+      type: 'text',
+    },
+    {
+      name: 'price',
+      title: 'Price',
+      type: 'number',
+    },
+    {
+      name: 'category',
+      title: 'Category',
+      type: 'reference',
+      to: [{ type: 'category' }],
+    },
+    {
+      name: 'image',
+      title: 'Image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    },
+    {
+      name: 'stock',
+      title: 'Stock',
+      type: 'number',
+    },
+  ],
+};
+
+2)CATEGORY SCHEMA:
+export default {
+  name: 'category',
+  title: 'Category',
+  type: 'document',
+  fields: [
+    {
+      name: 'name',
+      title: 'Name',
+      type: 'string',
+    },
+    {
+      name: 'description',
+      title: 'Description',
+      type: 'text',
+    },
+  ],
+};
+
+3) ORDER SCHEMA:
+export default {
+  name: 'order',
+  title: 'Order',
+  type: 'document',
+  fields: [
+    {
+      name: 'customerName',
+      title: 'Customer Name',
+      type: 'string',
+    },
+    {
+      name: 'customerAddress',
+      title: 'Customer Address',
+      type: 'string',
+    },
+    {
+      name: 'products',
+      title: 'Products',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'product' }] }],
+    },
+    {
+      name: 'totalAmount',
+      title: 'Total Amount',
+      type: 'number',
+    },
+    {
+      name: 'status',
+      title: 'Status',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Pending', value: 'pending' },
+          { title: 'Completed', value: 'completed' },
+          { title: 'Cancelled', value: 'cancelled' },
+        ],
+      },
+    },
+    {
+      name: 'orderDate',
+      title: 'Order Date',
+      type: 'datetime',
+    },
+  ],
+};
+
+4)USER SCHEMA:
+export default {
+  name: 'user',
+  title: 'User ',
+  type: 'document',
+  fields: [
+    {
+      name: 'username',
+      title: 'Username',
+      type: 'string',
+    },
+    {
+      name: 'email',
+      title: 'Email',
+      type: 'string',
+    },
+    {
+      name: 'phone',
+      title: 'Phone Number',
+      type: 'string',
+    },
+    {
+      name: 'address',
+      title: 'Address',
+      type: 'text',
+    },
+  ],
+};
