@@ -1,4 +1,4 @@
-"MARKETPLACE TECHNICAL FOUNDATION Q-COMMERCE"
+"MARKETPLACE TECHNICAL FOUNDATION GENERAL E-COMMERCE"
 
 POINT:)01
 1)TRANSITIONING TO TECHNICAL PLANNING":
@@ -14,19 +14,19 @@ POINT 2 WILL BE DISCUSSED DIAGRAMMIICALLY
 
 POINT:03
 "PLAN API REQUIREMENTS"
-Q-COMMERCE:
-As you all know that Q-commerce can be decscribed as Quick Commerce means that your order can be deliver on urgent basis upon your given requirements It can be include following points related to API i.e.
+EQ-COMMERCE:
+As you all know that E-commerce can be decscribed as Electronic Commerce means that your order can be deliver on given  time upon your given requirements It can be include following points related to API i.e.
  
-1) ENDPOINT NAME:/express-delivery
+1) ENDPOINT NAME:/products
 2) METHOD: GET
-3) DESCRIPTION:Give exact delivery times on your urgent items
-4) RESPONSE EXAMPLE: {"orderId":123,"status":"ON the way","ETA": "5 mins"}
+3) DESCRIPTION:Fetch all products detail
+4) RESPONSE EXAMPLE:{"id":1,"name":"productA","price":100}
 
 "API ENDPOINTS NEEDED"
-1)ENDPOINT NAME:/shipment
+1)ENDPOINT NAME:/products
 2)METHOD:GET
-3)DESCRIPTION:Track your order
-4)RESPONSE:Shipment ID,orderID,Delivery status
+3)DESCRIPTION:Fetch all available products from sanity
+4)RESPONSE:Product Details(ID,name,price,stock,image)
 
 
 

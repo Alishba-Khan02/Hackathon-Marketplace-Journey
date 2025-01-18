@@ -1,0 +1,146 @@
+"MARKETPLACE TECHNICAL FOUNDATION GENERAL E-COMMERCE HISTORY"
+1) SYSTEM ARCHITECTURE OVERVIEW:
+Now we discussed the role of each component that we draw on excalidraw. Firstly;
+
+1)Frontend UI as we all know that UI is the most essential part of our project that attracts users to use our website "Better the UI More the users". It is the most hybrid part on our coding journey to make UI perfect.
+
+2)Sanity CMS is a headless content management system designed for developers and content creators to build and manage digital content efficiently.  Its API-first approach ensures that content can be easily integrated into websites, applications, and other digital experiences, making it a popular choice for modern web development. With real-time collaboration features, a powerful query language (GROQ), and an intuitive user interface, Sanity enables teams to create, edit, and deliver content across various platforms seamlessly.
+
+3)A third-party API (Application Programming Interface) is a set of protocols and tools that allows developers to access and integrate external services or data from other companies or platforms into their own applications. These APIs enable developers to leverage existing functionalities, such as payment processing, social media interactions, or data storage, without having to build those features from scratch. By using third-party APIs, developers can enhance their applications, streamline development processes, and provide users with richer experiences while saving time and resources.
+
+2)KEYWORKS FLOW":
+Now we have to discussed about keywork flow, it s already done in diagram form
+
+3)"CATEGORY SPECIFIC INSTRUCTIONS"
+E-commerce encompasses a wide range of categories, each with its own specific characteristics and instructions for effective operation. Below are some key categories of e-commerce, along with their characteristics and examples:
+
+1. Business-to-Consumer (B2C)
+Characteristics:
+Direct sales from businesses to individual consumers.
+Focus on user-friendly interfaces and customer experience.
+Often involves marketing strategies like SEO, social media, and email marketing.
+Examples:
+Amazon, Walmart, and Zappos.
+2. Business-to-Business (B2B)
+Characteristics:
+Transactions between businesses, often involving bulk orders.
+Longer sales cycles and more complex negotiations.
+Emphasis on relationship building and customer service.
+Examples:
+Alibaba, ThomasNet, and Grainger.
+3. Consumer-to-Consumer (C2C)
+Characteristics:
+Transactions between consumers, often facilitated by a third-party platform.
+Focus on user-generated content and community engagement.
+Typically involves auctions or fixed-price sales.
+Examples:
+eBay, Craigslist, and Facebook Marketplace.
+
+
+4)"API ENDPOINTS":
+1) ENDPOINT NAME:/products
+2) METHOD: GET
+3) DESCRIPTION:Fetch all products detail
+4) RESPONSE EXAMPLE:{"id":1,"name":"productA","price":100}
+
+
+5)"SANITY SCHEMA EXAMPLE":
+it can be defined as follows:
+1)PRODUCT SCHEMA:
+
+javascript
+
+Verify
+
+Open In Editor
+Run
+Copy code
+// schemas/product.js
+export default {
+  name: 'product',
+  title: 'Product',
+  type: 'document',
+  fields: [
+    {
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+    },
+    {
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {
+        source: 'title',
+        maxLength: 96,
+      },
+    },
+    {
+      name: 'description',
+      title: 'Description',
+      type: 'text',
+    },
+    {
+      name: 'price',
+      title: 'Price',
+      type: 'number',
+    },
+    {
+      name: 'image',
+      title: 'Image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    },
+    {
+      name: 'category',
+      title: 'Category',
+      type: 'reference',
+      to: [{ type: 'category' }],
+    },
+    {
+      name: 'inStock',
+      title: 'In Stock',
+      type: 'boolean',
+    },
+  ],
+};
+
+2)CATEGORY SCHEMA:
+// schemas/category.js
+export default {
+  name: 'category',
+  title: 'Category',
+  type: 'document',
+  fields: [
+    {
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+    },
+    {
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {
+        source: 'title',
+        maxLength: 96,
+      },
+    },
+  ],
+};
+
+3) Sample Data Entryconst query = `*[_type == "product" && category->slug.current == "audio"] {
+  title,
+  slug,
+  description,
+  price,
+  image {
+    asset-> {
+      _id,
+      url
+    }
+  },
+  inStock
+}`;
